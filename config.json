@@ -1,0 +1,51 @@
+{
+  "settings": {
+    "microgrids": 3,
+    "dt_minutes": 1.0,
+    "reference_price": 0.25,
+    "min_price": 0.1,
+    "max_price": 0.5,
+    "fixed_price": 0.25,
+    "contract_kw": 12.0,
+    "contract_cost": 0.08,
+    "shortage_penalty": 0.8,
+    "battery_wear": 0.01,
+    "charge_efficiency": 0.95,
+    "discharge_efficiency": 0.95,
+    "demand_noise": 0.15,
+    "allocation_bins": 40,
+    "price_points": 9
+  },
+  "base_demand_kw": [
+    8.0,
+    11.0,
+    14.0
+  ],
+  "elasticities": [
+    0.25,
+    0.45,
+    0.65
+  ],
+  "battery_capacity_kwh": [
+    6.0,
+    8.0,
+    10.0
+  ],
+  "charge_limit_kw": [
+    4.0,
+    5.0,
+    6.0
+  ],
+  "discharge_limit_kw": [
+    4.0,
+    5.0,
+    6.0
+  ],
+  "seed": 42,
+  "source": "SKIPPD measured minute-average power",
+  "prepared_split": "test",
+  "demand_formula": "base_kw * daily_profile * max(0,1-elasticity*(price/reference_price-1)+noise_sd*z) * dt_hours",
+  "observation_assumption": "perfect measurement of current minute-average supply; future supply hidden",
+  "terminal_value": "zero; compare final battery levels alongside profit",
+  "parameter_status": "illustrative simulation parameters, known to baselines, not empirically calibrated"
+}
